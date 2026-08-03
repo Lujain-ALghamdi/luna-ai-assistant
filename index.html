@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Luna — AI Voice Assistant</title>
+<meta name="description" content="Luna AI Voice Assistant — your intelligent voice companion. Speak naturally and Luna answers back.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true">
+  <span class="blob blob-pink"></span>
+  <span class="blob blob-lavender"></span>
+</div>
+
+<main class="phone">
+
+  <header class="phone__header">
+    <p class="eyebrow">Luna AI Voice Assistant</p>
+    <h1 class="wordmark">Luna</h1>
+    <p class="tagline">Your intelligent voice companion</p>
+  </header>
+
+  <section class="stage" aria-live="polite">
+
+    <div class="orb-wrap">
+      <div class="orb" id="orb" role="button" tabindex="0" aria-label="Start listening" aria-pressed="false">
+        <span class="orb__ring ring-1"></span>
+        <span class="orb__ring ring-2"></span>
+        <span class="orb__ring ring-3"></span>
+        <span class="orb__core">
+          <svg class="orb__icon orb__icon--mic" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12V6.5C15.5 4.567 13.933 3 12 3C10.067 3 8.5 4.567 8.5 6.5V12C8.5 13.933 10.067 15.5 12 15.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 11V12C5.5 15.5899 8.41015 18.5 12 18.5C15.5899 18.5 18.5 15.5899 18.5 12V11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 18.5V21.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M9 21.5H15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <div class="orb__waves" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <p class="status" id="status">Ready when you are</p>
+    <p class="status-sub" id="statusSub">Tap the orb and start talking</p>
+
+  </section>
+
+  <section class="conversation" id="conversation" aria-label="Conversation with Luna">
+    <div class="conversation__empty" id="conversationEmpty">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.6449 3.4442 15.1865 4.21855 16.5108L3.5 20.5L7.68183 19.6704C8.97595 20.5058 10.4308 21 12 21Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+      <p>Say “Hello Luna” to begin</p>
+    </div>
+    <!-- Message bubbles are appended here by app.js -->
+  </section>
+
+  <p class="mic-note" id="micNote">Microphone access is required</p>
+
+</main>
+
+<audio id="lunaAudio" preload="none" hidden></audio>
+
+<script src="app.js" defer></script>
+</body>
+</html>

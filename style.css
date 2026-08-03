@@ -1,0 +1,364 @@
+/* ==========================================================
+   Luna AI Voice Assistant — style.css
+   Design tokens: pastel pink + lavender, glassmorphism,
+   iPhone-inspired premium feminine aesthetic.
+   ========================================================== */
+
+:root{
+  --bg-start:   #fff6fa;
+  --bg-end:     #efe7ff;
+
+  --pink:       #ff9ec4;
+  --pink-deep:  #ff6fa5;
+  --lavender:   #b79cee;
+  --lavender-deep: #9575e0;
+  --gold:       #ffd9a0;
+
+  --ink:        #3d2e4f;
+  --ink-soft:   #8577a0;
+  --ink-faint:  #b6acc9;
+
+  --glass:        rgba(255,255,255,0.55);
+  --glass-strong: rgba(255,255,255,0.78);
+  --glass-border: rgba(255,255,255,0.9);
+
+  --shadow-soft: 0 20px 60px -20px rgba(157, 110, 194, 0.35);
+  --shadow-btn:  0 12px 28px -10px rgba(255, 111, 165, 0.55);
+
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Outfit", "Segoe UI", sans-serif;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 8%, #fff0f6 0%, transparent 45%),
+    radial-gradient(circle at 85% 92%, #ece0ff 0%, transparent 45%),
+    linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------------- Ambient background blobs ---------------- */
+
+.ambient{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.blob{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: drift 16s ease-in-out infinite;
+}
+.blob-pink{
+  width: 360px; height: 360px;
+  top: -80px; left: -100px;
+  background: radial-gradient(circle, var(--pink) 0%, transparent 70%);
+}
+.blob-lavender{
+  width: 420px; height: 420px;
+  bottom: -140px; right: -120px;
+  background: radial-gradient(circle, var(--lavender) 0%, transparent 70%);
+  animation-delay: -8s;
+}
+@keyframes drift{
+  0%, 100%{ transform: translate(0, 0) scale(1); }
+  50%{ transform: translate(24px, -18px) scale(1.08); }
+}
+
+/* ---------------- Phone shell ---------------- */
+
+.phone{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  min-height: min(820px, 92dvh);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 26px 22px;
+  border-radius: var(--radius-xl);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.8);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+/* ---------------- Header ---------------- */
+
+.phone__header{
+  text-align: center;
+  margin-bottom: 6px;
+}
+.eyebrow{
+  margin: 0 0 2px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.wordmark{
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1;
+  background: linear-gradient(120deg, var(--pink-deep), var(--lavender-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tagline{
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+/* ---------------- Stage: the Orb ---------------- */
+
+.stage{
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 0 18px;
+}
+
+.orb-wrap{
+  width: 172px;
+  height: 172px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orb{
+  position: relative;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline-offset: 6px;
+}
+.orb:focus-visible{
+  outline: 2px solid var(--lavender-deep);
+}
+
+.orb__ring{
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  background: linear-gradient(#fff,#fff) padding-box,
+              linear-gradient(135deg, var(--pink), var(--lavender)) border-box;
+  opacity: 0.5;
+}
+.ring-1{ animation: breathe 4.2s ease-in-out infinite; }
+.ring-2{ inset: -14px; animation: breathe 4.2s ease-in-out infinite 0.5s; opacity: 0.32; }
+.ring-3{ inset: -28px; animation: breathe 4.2s ease-in-out infinite 1s; opacity: 0.18; }
+
+@keyframes breathe{
+  0%, 100%{ transform: scale(0.94); }
+  50%{ transform: scale(1.04); }
+}
+
+.orb__core{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: conic-gradient(from 180deg, var(--pink), var(--lavender), var(--gold), var(--pink));
+  box-shadow: var(--shadow-btn), inset 0 2px 10px rgba(255,255,255,0.5);
+  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+.orb:hover .orb__core{ transform: scale(1.035); }
+.orb:active .orb__core{ transform: scale(0.97); }
+
+.orb__icon{ width: 34px; height: 34px; position: relative; z-index: 2; }
+
+.orb__waves{
+  position: absolute;
+  display: none;
+  align-items: flex-end;
+  gap: 4px;
+  height: 30px;
+}
+.orb__waves span{
+  width: 4px;
+  border-radius: 3px;
+  background: #fff;
+  height: 8px;
+  animation: wave 1.1s ease-in-out infinite;
+}
+.orb__waves span:nth-child(1){ animation-delay: 0s; }
+.orb__waves span:nth-child(2){ animation-delay: 0.12s; }
+.orb__waves span:nth-child(3){ animation-delay: 0.24s; }
+.orb__waves span:nth-child(4){ animation-delay: 0.36s; }
+.orb__waves span:nth-child(5){ animation-delay: 0.48s; }
+@keyframes wave{
+  0%, 100%{ height: 8px; }
+  50%{ height: 26px; }
+}
+
+/* State: listening — faster pulsing rings, waveform replaces mic icon */
+.orb.is-listening .orb__ring{ animation-duration: 1.6s; opacity: 0.65; }
+.orb.is-listening .orb__core{
+  background: conic-gradient(from 0deg, var(--pink-deep), var(--pink), var(--lavender), var(--pink-deep));
+  animation: spin 3s linear infinite;
+}
+.orb.is-listening .orb__icon--mic{ display: none; }
+.orb.is-listening .orb__waves{ display: flex; }
+
+/* State: processing — slow shimmer rotation */
+.orb.is-processing .orb__core{
+  animation: spin 1.6s linear infinite;
+  background: conic-gradient(from 0deg, var(--lavender), var(--gold), var(--pink), var(--lavender));
+}
+.orb.is-processing .orb__icon{ opacity: 0.85; }
+
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+
+/* State: speaking — gentle scale pulse */
+.orb.is-speaking .orb__core{
+  animation: speak-pulse 0.9s ease-in-out infinite;
+  background: conic-gradient(from 90deg, var(--lavender-deep), var(--pink), var(--gold), var(--lavender-deep));
+}
+@keyframes speak-pulse{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.06); }
+}
+
+.status{
+  margin: 22px 0 2px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.status-sub{
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+/* ---------------- Conversation ---------------- */
+
+.conversation{
+  flex: 1 1 auto;
+  min-height: 120px;
+  margin-top: 6px;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.7);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-width: thin;
+}
+.conversation::-webkit-scrollbar{ width: 5px; }
+.conversation::-webkit-scrollbar-thumb{ background: rgba(183,156,238,0.4); border-radius: 6px; }
+
+.conversation__empty{
+  margin: auto;
+  text-align: center;
+  color: var(--ink-faint);
+  padding: 10px;
+}
+.conversation__empty svg{ color: var(--lavender); margin-bottom: 8px; }
+.conversation__empty p{ margin: 0; font-size: 12.5px; }
+
+.bubble{
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  line-height: 1.45;
+  animation: rise 0.3s ease both;
+}
+@keyframes rise{
+  from{ opacity: 0; transform: translateY(8px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.bubble--user{
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--lavender), var(--lavender-deep));
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+.bubble--luna{
+  align-self: flex-start;
+  background: var(--glass-strong);
+  border: 1px solid rgba(255,255,255,0.9);
+  color: var(--ink);
+  border-bottom-left-radius: 6px;
+}
+.bubble[dir="rtl"]{ text-align: right; }
+
+/* ---------------- Mic note ---------------- */
+
+.mic-note{
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 420px){
+  .phone{ padding: 24px 18px 18px; border-radius: 26px; }
+  .wordmark{ font-size: 36px; }
+  .orb-wrap{ width: 150px; height: 150px; }
+  .orb{ width: 116px; height: 116px; }
+  .orb__core{ width: 88px; height: 88px; }
+}
+
+@media (min-width: 900px){
+  body{ padding: 40px 16px; }
+  .phone{ max-width: 420px; min-height: 780px; }
+}
