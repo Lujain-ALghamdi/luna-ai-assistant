@@ -108,3 +108,8 @@ https://github.com/user-attachments/assets/b52ea10e-8984-4255-a8a2-648dc78b2ec9
 | **Text-to-speech** | English voice |
 | **Hosting** | InfinityFree (shared hosting, no Node.js) |
 | **Stack** | HTML, CSS, JavaScript, PHP only |
+
+
+💙 If you like this project, give it a ⭐ and share it with friends!
+
+
