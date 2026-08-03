@@ -2,7 +2,7 @@
 
 Luna is an English voice-to-voice AI assistant that runs entirely on plain **HTML, CSS, JavaScript, and PHP** — no Node.js, no build step, no frameworks. It's designed to be uploaded straight into a shared-hosting `htdocs` folder (e.g. **InfinityFree**) and just work.
 
-You speak → Luna listens → Luna understands (Cohere AI) → Luna talks back.
+👉🏻 [Explore Live Demo](https://luna-ai-assistant.lovestoblog.com/) You speak → Luna listens → Luna understands (Cohere AI) → Luna talks back.
 
 ---
 
